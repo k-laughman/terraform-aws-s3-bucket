@@ -1,10 +1,13 @@
 resource "aws_s3_bucket" "this" {
   count = var.create_bucket ? 1 : 0
 
-  bucket              = var.bucket
-  bucket_prefix       = var.bucket_prefix
-  acl                 = var.acl
-  tags                = var.tags
+  bucket        = var.bucket
+  bucket_prefix = var.bucket_prefix
+  acl           = var.acl
+  tags = merge(var.tags, {
+    yor_name  = "this"
+    yor_trace = "949cae14-ced1-4603-8dee-49ed4ee74d6e"
+  })
   force_destroy       = var.force_destroy
   acceleration_status = var.acceleration_status
   request_payer       = var.request_payer

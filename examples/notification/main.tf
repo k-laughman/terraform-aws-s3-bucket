@@ -49,6 +49,10 @@ module "lambda_function1" {
 
   create_package         = false
   local_existing_package = data.null_data_source.downloaded_package.outputs["filename"]
+  tags = {
+    yor_name  = "lambda_function1"
+    yor_trace = "060c6b2a-193e-47e7-b21b-04acf6f44df2"
+  }
 }
 
 module "lambda_function2" {
@@ -61,6 +65,10 @@ module "lambda_function2" {
 
   create_package         = false
   local_existing_package = data.null_data_source.downloaded_package.outputs["filename"]
+  tags = {
+    yor_name  = "lambda_function2"
+    yor_trace = "28fba687-5d5e-4abe-ad6f-26f5439d19cc"
+  }
 }
 
 module "sns_topic1" {
@@ -74,6 +82,10 @@ module "sns_topic2" {
 resource "aws_sqs_queue" "this" {
   count = 2
   name  = "${random_pet.this.id}-${count.index}"
+  tags = {
+    yor_name  = "this"
+    yor_trace = "9b0fbd3a-1e29-472e-bde5-237a4185e614"
+  }
 }
 
 # SQS policy created outside of the module
